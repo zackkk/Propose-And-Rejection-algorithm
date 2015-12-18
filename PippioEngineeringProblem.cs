@@ -35,19 +35,16 @@ namespace PippioEngineeringProblem {
                     int preferredPersonIndex = advertisersPreferenceIndex[freeAdvertiser];
                     string preferredPerson = advertisersPreference[freeAdvertiser][preferredPersonIndex];
 
-                    if (!matched.ContainsKey(preferredPerson))  // the person hasn't been matched
-                    {
+                    if (!matched.ContainsKey(preferredPerson)){  // the person hasn't been matched
                         matched[preferredPerson] = freeAdvertiser;
                         freeAdvertisers.Remove(freeAdvertiser);
                     }
-                    else  // the person has been matched
-                    {
+                    else { // the person has been matched
                         string matchedAdvertiser = matched[preferredPerson];
 
                         // the preferred person prefers the current advertiser than its previous matched advertiser
                         // this could also use the indexes of two advertisers of the preferredPerson, but it would exchange even they are equal
-                        if (GetCTR(freeAdvertiser, preferredPerson) > GetCTR(matchedAdvertiser, preferredPerson))
-                        {
+                        if (GetCTR(freeAdvertiser, preferredPerson) > GetCTR(matchedAdvertiser, preferredPerson)){
                             matched[preferredPerson] = freeAdvertiser;
                             freeAdvertisers.Remove(freeAdvertiser);
                             freeAdvertisers.Add(matchedAdvertiser);
